@@ -1,9 +1,9 @@
-/laravel/node_modules
-/public_html/laravel/build
-/public_html/laravel/hot
-/public_html/laravel/storage
-/laravel/storage/*.key
-/laravel/vendor
+/node_modules
+/public/laravel/build
+/public/laravel/hot
+/public/laravel/storage
+/storage/*.key
+/vendor
 .env
 .env.backup
 .env.production
