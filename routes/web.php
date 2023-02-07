@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if (!Schema::hasTable('users')) {
+        Artisan::call('migrate:fresh --seed');
+    }
     return view('welcome');
 });
 
@@ -24,11 +29,11 @@ Route::get('login',  [App\Http\Controllers\Auth\LoginController::class, 'showLog
 Route::post('login',  [App\Http\Controllers\Auth\LoginController::class, 'login']);
 Route::post('logout',  [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/migrate', function() {
+Route::get('/migrate', function () {
+    Session::flush();
+    Auth::logout();
     Artisan::call('migrate:fresh --seed');
-    return view('welcome');
-});
+    return redirect ('login');
+})->middleware('auth');
