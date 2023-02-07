@@ -16,11 +16,16 @@ class CompanyFactory extends Factory
      */
     public function definition()
     {
+        $name = fake()->company();
+        $website = null;
+        if (rand(0,1)) {
+            $website = 'http://' . str_replace([' ', ','],'',$name) . '.com';
+        }
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            // 'logo' => fake()->
-            // 'website' => fake()->
+            'name' => $name,
+            'email' => fake()->unique()->companyEmail(),
+            'logo' => fake()->image(dirname(__DIR__,2).'\public\test'),
+            'website' => $website,
         ];
     }
 }

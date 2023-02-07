@@ -17,11 +17,20 @@ class EmployeeFactory extends Factory
      */
     public function definition()
     {
+
+        $email = null;
+        if (rand(0,1)) {
+            $email = fake()->unique()->safeEmail();
+        }
+        $phone = null;
+        if (rand(0,1)) {
+            $phone = fake()->phoneNumber;
+        }
         return [
             'first' => fake()->firstName(),
             'last' => fake()->lastName(),
-            'email' => fake()->unique()->companyEmail(),
-            'phone' => fake()->phoneNumber,
+            'email' => $email,
+            'phone' => $phone,
         ];
     }
 }

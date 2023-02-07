@@ -29,11 +29,19 @@ Route::get('login',  [App\Http\Controllers\Auth\LoginController::class, 'showLog
 Route::post('login',  [App\Http\Controllers\Auth\LoginController::class, 'login']);
 Route::post('logout',  [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
+Route::get('companies', [App\Http\Controllers\CompanyController::class, 'index']);
+Route::get('company/{id}', [App\Http\Controllers\CompanyController::class, 'show']);
+
+Route::get('employees', [App\Http\Controllers\EmployeeController::class, 'index']);
+Route::get('employee/{id}', [App\Http\Controllers\EmployeeController::class, 'show']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/migrate', function () {
-    Session::flush();
-    Auth::logout();
-    Artisan::call('migrate:fresh --seed');
-    return redirect ('login');
-})->middleware('auth');
+    // Session::flush();
+    // Auth::logout();
+    Artisan::call('migrate:fresh --seed --force');
+    // return redirect ('login');
+    return redirect('/');
+// })->middleware('auth');
+});
