@@ -24,7 +24,7 @@ class CompanyFactory extends Factory
         return [
             'name' => $name,
             'email' => fake()->unique()->companyEmail(),
-            'logo' => fake()->image(dirname(__DIR__,2).'\public\test'),
+            'logo' => fake()->image(dirname(__DIR__,2).'//public//test'),
             'website' => $website,
         ];
     }
