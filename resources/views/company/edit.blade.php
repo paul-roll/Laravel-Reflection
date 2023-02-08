@@ -8,18 +8,19 @@
                 <div class="card-header">Placeholder</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('company.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('company.update', $company) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('PATCH')
 
-                        <x-form.input name="name" />
-                        <x-form.input name="email" type="email" />
-                        <x-form.input name="logo" type="file" />
-                        <x-form.input name="website" />
+                        <x-form.input name="name" value="{{ old('name', $company->name) }}" />
+                        <x-form.input name="email" type="email" value="{{ old('email', $company->email) }}" />
+                        <x-form.input name="logo" type="file" value="{{ old('logo', $company->logo) }}" />
+                        <x-form.input name="website" value="{{ old('website', $company->website) }}" />
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Create
+                                    Update
                                 </button>
                             </div>
                         </div>

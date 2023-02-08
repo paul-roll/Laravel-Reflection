@@ -19,7 +19,9 @@
                     @if ($employee->company)
                     <p><a href="../company/{{ $employee->company->id }}">{{ $employee->company->name }}</a></p>
                     <p>{{ $employee->company->email }}</p>
-                    <p><img src="../{{ $employee->company->logo }}" alt=""></p>
+                    @if($employee->company->logo)
+                    <x-logo>../storage/company/logos/{{ $employee->company->logo }}</x-logo>
+                    @endif
                     <p>{{ $employee->company->website }}</p>
                     <hr>
                     @endif

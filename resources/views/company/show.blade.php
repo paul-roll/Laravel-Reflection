@@ -11,7 +11,9 @@
                     <div class="alert alert-success" role="alert">
                         <h3>{{ $company->name }}</h3>
                         <p>{{ $company->email }}</p>
-                        <p><img src="../{{ $company->logo }}" alt=""></p>
+                        @if($company->logo)
+                        <x-logo>../storage/company/logos/{{ $company->logo }}</x-logo>
+                        @endif
                         <p>{{ $company->website }}</p>
                     </div>
 

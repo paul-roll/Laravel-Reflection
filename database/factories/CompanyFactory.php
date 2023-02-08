@@ -16,22 +16,30 @@ class CompanyFactory extends Factory
      */
     public function definition()
     {
+
+        // make folders if they don't exist
+        if (!file_exists(storage_path('app/public/company/logos'))) {
+            mkdir(storage_path('app/public/company/logos'), 0755, true);
+        }
+
         $name = fake()->company();
 
         $email = null;
-        if (rand(0,2)) {
+        if (rand(0, 2)) {
             $email = fake()->unique()->companyEmail();
         }
-        
+
         $logo = null;
-        if (rand(0,2)) {
+        if (rand(0, 2)) {
             // $logo = fake()->image(public_path('img\\company\\logos'), 100, 100, null, true, true, $name);
-            $logo = 'img\\company\\logos\\' . fake()->image(public_path('img/company/logos'), 100, 100, null, false, true, $name);
+            // $logo = 'img\\company\\logos\\' . fake()->image(public_path('img/company/logos'), 100, 100, null, false, true, $name);
+            // $logo = 'storage\\company\\logos\\' . fake()->image(public_path('storage/company/logos'), 100, 100, null, false, true, $name);
+            $logo = fake()->image(storage_path('app/public/company/logos'), 100, 100, null, false, true, $name);
         }
 
         $website = null;
-        if (rand(0,2)) {
-            $website = 'http://' . str_replace([' ', ','],'',$name) . '.com';
+        if (rand(0, 2)) {
+            $website = 'http://' . str_replace([' ', ','], '', $name) . '.com';
         }
         return [
             'name' => $name,

@@ -46,33 +46,53 @@ class CompanyController extends Controller
         return view('company.create');
     }
 
-    protected function validateCompany()
+    protected function validateCompany(?Company $company = null): array
     {
         return request()->validate([
             "name" => ['required'],
             "email" => ['nullable', 'email'],
-            // "logo" => $post->exists() ? ['image'] : ['nullable', 'image'],
+            "logo" => ['nullable', 'image'],
             "website" => ['nullable'],
         ]);
     }
 
+
     public function store()
     {
         $attributes = $this->validateCompany();
+
+        if ($attributes['logo'] ?? false) {
+            $attributes['logo'] = 'storage\\' . request()->file('logo')->store('company\\logos');
+        }
 
         Company::create($attributes);
         
         return redirect('/');
     }
 
-    public function edit()
+    public function edit(Company $company)
     {
         // Show a view to edit an existing resource
+        return view('company.edit', ['company' => $company]);
+        // return view('company.edit');
     }
 
-    public function update()
+    public function update(Company $company)
     {
         // Persist the edited resource
+
+        $attributes = $this->validateCompany();
+
+        if ($attributes['logo'] ?? false) {
+            $attributes['logo'] = basename(request()->file('logo')->store('public\\company\\logos'));
+            unlink(storage_path('app\\public\\company\\logos\\' . $company->logo));
+        }
+
+        $company->update($attributes);
+      
+        // return redirect('/company/{{ $company->id }}');
+        return redirect('company/'.$company->id);
+        // return back()->with('success', 'Post Updated!');
     }
 
     public function destroy()

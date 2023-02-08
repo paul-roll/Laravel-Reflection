@@ -22,9 +22,10 @@ use Illuminate\Support\Facades\Session;
 */
 
 Route::get('/', function () {
-    if (!Schema::hasTable('users')) {
-        Artisan::call('migrate:fresh --seed');
-    }
+    // if (!Schema::hasTable('users')) {
+    //     Artisan::call('storage:link');
+    //     Artisan::call('migrate:fresh --seed --force');
+    // }
     return view('welcome');
 });
 
@@ -41,11 +42,26 @@ Route::get('employee/{id}', [EmployeeController::class, 'show']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/migrate', function () {
+Route::get('/reset', function () {
+
+    // // logout
     // Session::flush();
     // Auth::logout();
+
+    // delete symlink
+    if (file_exists(public_path('storage'))) {
+        rmdir(public_path('storage'));
+    }
+
+    // create symlink
+    Artisan::call('storage:link');
+
+    // clean out old company images
+    array_map('unlink', glob(storage_path('app/public/company/logos/*')));
+
     Artisan::call('migrate:fresh --seed --force');
+
     // return redirect ('login');
     return redirect('/');
-// })->middleware('auth');
+    // })->middleware('auth');
 });
