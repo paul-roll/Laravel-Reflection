@@ -35,13 +35,13 @@ class DatabaseSeeder extends Seeder
 
         Company::factory($num_companies)->create();
         for ($i = 1; $i <= $num_employees; $i++) {
-            if (rand(0,1)) {
-                Employee::factory()->create();
-            } else {
+            if (rand(0,2)) {
                 $company_id = rand(1,$num_companies);
                 Employee::factory()->create([
                     'company_id' => $company_id,
                 ]);
+            } else {
+                Employee::factory()->create();
             }
             
         }

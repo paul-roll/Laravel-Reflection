@@ -18,7 +18,7 @@
                     </div>
                     @endforeach
 
-                    Placeholder
+                    {{ $companies->links() }}
                 </div>
             </div>
         </div>

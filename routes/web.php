@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,17 +29,17 @@ Route::get('/', function () {
 });
 
 // Auth::routes();
-Route::get('login',  [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login',  [App\Http\Controllers\Auth\LoginController::class, 'login']);
-Route::post('logout',  [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+// Auth::routes(['register' => false]);
+Route::get('login',  [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login',  [LoginController::class, 'login']);
+Route::post('logout',  [LoginController::class, 'logout'])->name('logout');
 
-Route::get('company', [App\Http\Controllers\CompanyController::class, 'index']);
-Route::get('company/{id}', [App\Http\Controllers\CompanyController::class, 'show']);
+Route::resource('company', CompanyController::class);
 
-Route::get('employee', [App\Http\Controllers\EmployeeController::class, 'index']);
-Route::get('employee/{id}', [App\Http\Controllers\EmployeeController::class, 'show']);
+Route::get('employee', [EmployeeController::class, 'index']);
+Route::get('employee/{id}', [EmployeeController::class, 'show']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/migrate', function () {
     // Session::flush();

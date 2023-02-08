@@ -19,18 +19,18 @@ class CompanyFactory extends Factory
         $name = fake()->company();
 
         $email = null;
-        if (rand(0,1)) {
+        if (rand(0,2)) {
             $email = fake()->unique()->companyEmail();
         }
         
         $logo = null;
-        if (rand(0,1)) {
+        if (rand(0,2)) {
             // $logo = fake()->image(public_path('img\\company\\logos'), 100, 100, null, true, true, $name);
             $logo = 'img\\company\\logos\\' . fake()->image(public_path('img/company/logos'), 100, 100, null, false, true, $name);
         }
 
         $website = null;
-        if (rand(0,1)) {
+        if (rand(0,2)) {
             $website = 'http://' . str_replace([' ', ','],'',$name) . '.com';
         }
         return [

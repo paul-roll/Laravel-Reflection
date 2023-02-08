@@ -17,3 +17,4 @@ yarn-error.log
 /.idea
 /.vscode
 *.lnk
+/public/img/company/logos/*.png
