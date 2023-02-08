@@ -11,7 +11,7 @@
 
                     @foreach ($employees as $employee)
                     <div class="alert alert-success" role="alert">
-                        <h3>{{ $employee->first }} {{ $employee->last }}</h3>
+                        <h3><a href="employee/{{ $employee->id }}">{{ $employee->first }} {{ $employee->last }}</a></h3>
                         <p>{{ $employee->email }}</p>
                         <p>{{ $employee->phone }}</p>
                     </div>

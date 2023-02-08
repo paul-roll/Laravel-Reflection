@@ -17,9 +17,9 @@
                     <hr>
 
                     @if ($employee->company)
-                    <p>{{ $employee->company->name }}</p>
+                    <p><a href="../company/{{ $employee->company->id }}">{{ $employee->company->name }}</a></p>
                     <p>{{ $employee->company->email }}</p>
-                    <p>{{ $employee->company->logo }}</p>
+                    <p><img src="../{{ $employee->company->logo }}" alt=""></p>
                     <p>{{ $employee->company->website }}</p>
                     <hr>
                     @endif

@@ -11,9 +11,9 @@
 
                     @foreach ($companies as $company)
                     <div class="alert alert-success" role="alert">
-                        <h3>{{ $company->name }}</h3>
+                        <h3><a href="company/{{ $company->id }}">{{ $company->name }}</a></h3>
                         <p>{{ $company->email }}</p>
-                        <p>{{ $company->logo }}</p>
+                        <p><img src="{{ $company->logo }}" alt=""></p>
                         <p>{{ $company->website }}</p>
                     </div>
                     @endforeach

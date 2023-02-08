@@ -23,7 +23,7 @@ class CompanyController extends Controller
         if ($company) {
             return view('company.show', ['company' => $company]);
         } else {
-            return redirect('companies');
+            return redirect('company');
         }
         
     }

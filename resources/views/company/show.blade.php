@@ -11,13 +11,13 @@
                     <div class="alert alert-success" role="alert">
                         <h3>{{ $company->name }}</h3>
                         <p>{{ $company->email }}</p>
-                        <p>{{ $company->logo }}</p>
+                        <p><img src="../{{ $company->logo }}" alt=""></p>
                         <p>{{ $company->website }}</p>
                     </div>
 
                     @foreach ($company->employees as $employee)
                     <hr>
-                    <p>{{ $employee->first }} {{ $employee->last }}</p>
+                    <p><a href="../employee/{{ $employee->id }}">{{ $employee->first }} {{ $employee->last }}</a></p>
                     <p>{{ $employee->email }}</p>
                     <p>{{ $employee->phone }}</p>
                     @endforeach

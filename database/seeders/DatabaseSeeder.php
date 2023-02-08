@@ -18,6 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        array_map('unlink', glob(public_path('img/company/logos/*.png')));
+        if (!file_exists(public_path('img/company/logos'))) {
+            mkdir(public_path('img/company/logos'), 0755, true);
+        }
+
         User::factory(1)->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
