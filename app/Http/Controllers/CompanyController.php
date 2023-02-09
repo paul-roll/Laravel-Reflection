@@ -46,9 +46,9 @@ class CompanyController extends Controller
             $attributes['logo'] = basename(request()->file('logo')->store('public\\company\\logos'));
         }
 
-        Company::create($attributes);
-        
-        return redirect('/');
+        $company = Company::create($attributes);
+        // return redirect('company/' . $company["id"]);
+        return redirect('company/' . $company->id);
     }
 
     public function edit(Company $company)
@@ -72,7 +72,7 @@ class CompanyController extends Controller
 
         $company->update($attributes);
       
-        return redirect('company/'.$company->id);
+        return redirect('company/'. $company->id);
     }
 
     public function destroy(Company $company)
@@ -84,8 +84,7 @@ class CompanyController extends Controller
         }
 
         $company->delete();
-        return back()->with('success', 'Deleted!');
-        // return redirect('company')->with('success', 'Deleted!');
+        return redirect('company')->with('success', 'Deleted!');
     }
 
     protected function validateCompany(?Company $company = null): array
@@ -93,7 +92,7 @@ class CompanyController extends Controller
         return request()->validate([
             "name" => ['required'],
             "email" => ['nullable', 'email'],
-            "logo" => ['nullable', 'image'],
+            "logo" => ['nullable', 'image', 'dimensions:min_width=100,min_height=100'],
             "website" => ['nullable'],
         ]);
     }

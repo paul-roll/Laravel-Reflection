@@ -22,11 +22,7 @@ use Illuminate\Support\Facades\Session;
 */
 
 Route::get('/', function () {
-    // if (!Schema::hasTable('users')) {
-    //     Artisan::call('storage:link');
-    //     Artisan::call('migrate:fresh --seed --force');
-    // }
-    return view('welcome');
+    return view('home');
 });
 
 // Auth::routes();
@@ -61,5 +57,5 @@ Route::get('/reset', function () {
 
     // return redirect ('login');
     return redirect('/');
-    // })->middleware('auth');
+    // })->middleware('admin');
 });

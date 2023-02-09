@@ -42,9 +42,8 @@ class EmployeeController extends Controller
     {
         $attributes = $this->validateEmployee();
 
-        Employee::create($attributes);
-
-        return redirect('/');
+        $employee = Employee::create($attributes);
+        return redirect('employee/' . $employee->id);
     }
 
     public function edit(Employee $employee)
@@ -68,8 +67,7 @@ class EmployeeController extends Controller
         // Delete the employee
 
         $employee->delete();
-        return back()->with('success', 'Deleted!');
-        // return redirect('company')->with('success', 'Deleted!');
+        return redirect('employee')->with('success', 'Deleted!');
     }
 
     protected function validateEmployee(?Employee $employee = null): array

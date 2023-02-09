@@ -23,7 +23,7 @@
                     </div>
                     @endforeach
 
-                    Placeholder
+                    {{ $employees->links() }}
                 </div>
             </div>
         </div>
