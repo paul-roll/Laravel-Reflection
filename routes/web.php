@@ -36,9 +36,7 @@ Route::post('login',  [LoginController::class, 'login']);
 Route::post('logout',  [LoginController::class, 'logout'])->name('logout');
 
 Route::resource('company', CompanyController::class);
-
-Route::get('employee', [EmployeeController::class, 'index']);
-Route::get('employee/{id}', [EmployeeController::class, 'show']);
+Route::resource('employee', EmployeeController::class);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
