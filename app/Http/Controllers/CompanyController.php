@@ -18,7 +18,6 @@ class CompanyController extends Controller
         return view('company.index', [
             'companies' => Company::latest()->paginate(10)
         ]);
-
     }
 
     public function show($id)
@@ -35,18 +34,8 @@ class CompanyController extends Controller
 
     public function create()
     {
-        // Shows a view to create a new resource
+        // Shows a view to create a new company
         return view('company.create');
-    }
-
-    protected function validateCompany(?Company $company = null): array
-    {
-        return request()->validate([
-            "name" => ['required'],
-            "email" => ['nullable', 'email'],
-            "logo" => ['nullable', 'image'],
-            "website" => ['nullable'],
-        ]);
     }
 
     public function store()
@@ -64,18 +53,21 @@ class CompanyController extends Controller
 
     public function edit(Company $company)
     {
-        // Show a view to edit an existing resource
+        // Show a view to edit an existing company
         return view('company.edit', ['company' => $company]);
     }
 
     public function update(Company $company)
     {
-        // Persist the edited resource
+        // Persist the edited company
         $attributes = $this->validateCompany();
 
         if ($attributes['logo'] ?? false) {
             $attributes['logo'] = basename(request()->file('logo')->store('public\\company\\logos'));
-            unlink(storage_path('app\\public\\company\\logos\\' . $company->logo));
+            
+            if ($company->logo ?? false) {
+                unlink(storage_path('app\\public\\company\\logos\\' . $company->logo));
+            }
         }
 
         $company->update($attributes);
@@ -85,7 +77,7 @@ class CompanyController extends Controller
 
     public function destroy(Company $company)
     {
-        // Delete the resource
+        // Delete the company
 
         if ($company->logo ?? false) {
             unlink(storage_path('app\\public\\company\\logos\\' . $company->logo));
@@ -96,4 +88,13 @@ class CompanyController extends Controller
         // return redirect('company')->with('success', 'Deleted!');
     }
 
+    protected function validateCompany(?Company $company = null): array
+    {
+        return request()->validate([
+            "name" => ['required'],
+            "email" => ['nullable', 'email'],
+            "logo" => ['nullable', 'image'],
+            "website" => ['nullable'],
+        ]);
+    }
 }

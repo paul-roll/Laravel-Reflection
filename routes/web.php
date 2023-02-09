@@ -43,8 +43,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/reset', function () {
 
     // // logout
-    // Session::flush();
-    // Auth::logout();
+    Session::flush();
+    Auth::logout();
 
     // delete symlink
     if (file_exists(public_path('storage'))) {

@@ -8,6 +8,12 @@
                 <div class="card-header">Employees</div>
                 <div class="card-body">
 
+                    @admin
+                    <div class="mb-2">
+                        Admin Links:
+                        <a href="employee/create"><input type="submit" value="Create" /></a>
+                    </div>
+                    @endadmin
 
                     @foreach ($employees as $employee)
                     <div class="alert alert-success" role="alert">
