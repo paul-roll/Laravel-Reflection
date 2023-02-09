@@ -15,12 +15,6 @@ class CompanyController extends Controller
     public function index()
     {
         // Index all
-
-        // $companies = Company::latest()->get();
-        // return view('company.index', [
-        //     'companies' => $companies
-        // ]);
-
         return view('company.index', [
             'companies' => Company::latest()->paginate(10)
         ]);
@@ -42,7 +36,6 @@ class CompanyController extends Controller
     public function create()
     {
         // Shows a view to create a new resource
-
         return view('company.create');
     }
 
@@ -56,13 +49,12 @@ class CompanyController extends Controller
         ]);
     }
 
-
     public function store()
     {
         $attributes = $this->validateCompany();
 
         if ($attributes['logo'] ?? false) {
-            $attributes['logo'] = 'storage\\' . request()->file('logo')->store('company\\logos');
+            $attributes['logo'] = basename(request()->file('logo')->store('public\\company\\logos'));
         }
 
         Company::create($attributes);
@@ -74,13 +66,11 @@ class CompanyController extends Controller
     {
         // Show a view to edit an existing resource
         return view('company.edit', ['company' => $company]);
-        // return view('company.edit');
     }
 
     public function update(Company $company)
     {
         // Persist the edited resource
-
         $attributes = $this->validateCompany();
 
         if ($attributes['logo'] ?? false) {
@@ -90,14 +80,20 @@ class CompanyController extends Controller
 
         $company->update($attributes);
       
-        // return redirect('/company/{{ $company->id }}');
         return redirect('company/'.$company->id);
-        // return back()->with('success', 'Post Updated!');
     }
 
-    public function destroy()
+    public function destroy(Company $company)
     {
         // Delete the resource
+
+        if ($company->logo ?? false) {
+            unlink(storage_path('app\\public\\company\\logos\\' . $company->logo));
+        }
+
+        $company->delete();
+        return back()->with('success', 'Deleted!');
+        // return redirect('company')->with('success', 'Deleted!');
     }
 
 }

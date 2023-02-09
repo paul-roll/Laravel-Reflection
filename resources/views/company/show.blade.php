@@ -17,6 +17,18 @@
                         <p>{{ $company->website }}</p>
                     </div>
 
+                    @admin
+                    <div>
+                        Admin Links:
+                        <a href="{{ $company->id }}/edit"><input type="submit" value="Edit" /></a>
+                        <form class="d-inline" method="POST" action="{{ $company->id }}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Delete" />
+                        </form>
+                    </div>
+                    @endadmin
+
                     @foreach ($company->employees as $employee)
                     <hr>
                     <p><a href="../employee/{{ $employee->id }}">{{ $employee->first }} {{ $employee->last }}</a></p>
