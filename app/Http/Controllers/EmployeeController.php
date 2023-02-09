@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class EmployeeController extends Controller
     public function create()
     {
         // Shows a view to create a new employee
-        return view('employee.create');
+        return view('employee.create', ['companies' => Company::all()]);
     }
 
     public function store()
@@ -49,7 +50,7 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         // Show a view to edit an existing employee
-        return view('employee.edit', ['employee' => $employee]);
+        return view('employee.edit', ['employee' => $employee, 'companies' => Company::all()]);
     }
 
     public function update(Employee $employee)

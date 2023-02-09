@@ -13,8 +13,10 @@
 
                         <x-form.input name="first" />
                         <x-form.input name="last" />
-                        <!-- <x-form.input name="company_id" disabled placeholder="#TODO" /> -->
-                        <x-form.input name="company_id" />
+
+                        <x-form.dropdown name="company_id" :companies="$companies"/>
+
+
                         <x-form.input name="email" type="email" />
                         <x-form.input name="phone" />
 

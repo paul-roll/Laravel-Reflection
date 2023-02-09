@@ -14,7 +14,10 @@
 
                         <x-form.input name="first" value="{{ old('first', $employee->first) }}" />
                         <x-form.input name="last" value="{{ old('last', $employee->last) }}" />
-                        <x-form.input name="company_id" value="{{ old('company_id', $employee->company_id) }}" />
+
+                        <!-- <x-form.input name="company_id" value="{{ old('company_id', $employee->company_id) }}" /> -->
+                        <x-form.dropdown name="company_id" :companies="$companies" />
+
                         <x-form.input name="email" type="email" value="{{ old('email', $employee->email) }}" />
                         <x-form.input name="phone" value="{{ old('phone', $employee->phone) }}" />
 
