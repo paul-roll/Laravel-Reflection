@@ -8,17 +8,8 @@
                 <div class="card-header">Company {{ $company->id }}</div>
                 <div class="card-body">
 
-                    <div class="alert alert-success" role="alert">
-                        <h3>{{ $company->name }}</h3>
-                        <p>{{ $company->email }}</p>
-                        @if($company->logo)
-                        <x-logo>../storage/company/logos/{{ $company->logo }}</x-logo>
-                        @endif
-                        <p>{{ $company->website }}</p>
-                    </div>
-
                     @admin
-                    <div>
+                    <div class="mb-2">
                         Admin Links:
                         <a href="{{ $company->id }}/edit"><input type="submit" value="Edit" /></a>
                         <form class="d-inline" method="POST" action="{{ $company->id }}">
@@ -28,6 +19,15 @@
                         </form>
                     </div>
                     @endadmin
+
+                    <div class="alert alert-success" role="alert">
+                        <h3>{{ $company->name }}</h3>
+                        <p>{{ $company->email }}</p>
+                        @if($company->logo)
+                        <x-logo>../storage/company/logos/{{ $company->logo }}</x-logo>
+                        @endif
+                        <p>{{ $company->website }}</p>
+                    </div>
 
                     @foreach ($company->employees as $employee)
                     <hr>
