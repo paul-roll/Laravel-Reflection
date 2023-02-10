@@ -13,7 +13,9 @@
 
                         <x-form.input name="name" />
                         <x-form.input name="email" type="email" />
-                        <x-form.input name="logo" type="file" />
+
+                        <x-form.file name="logo" />
+
                         <x-form.input name="website" />
 
                         <div class="row mb-0">

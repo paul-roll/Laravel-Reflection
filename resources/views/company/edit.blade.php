@@ -15,7 +15,7 @@
                         <x-form.input name="name" :value="old('name', $company->name)" />
                         <x-form.input name="email" type="email" :value="old('email', $company->email)" />
 
-                        <x-form.file name="logo" :value="old('logo', $company->logo)" :company="$company" />
+                        <x-form.file name="logo" :value="old('logo', $company->logo)" />
 
                         <x-form.input name="website" :value="old('website', $company->website)" />
 
