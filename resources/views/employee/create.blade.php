@@ -14,8 +14,7 @@
                         <x-form.input name="first" />
                         <x-form.input name="last" />
 
-                        <x-form.dropdown name="company_id" :companies="$companies"/>
-
+                        <x-form.dropdown name="company_id" :list="$companies"/>
 
                         <x-form.input name="email" type="email" />
                         <x-form.input name="phone" />

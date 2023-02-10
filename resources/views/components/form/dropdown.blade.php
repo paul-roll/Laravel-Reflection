@@ -7,7 +7,7 @@
         <select id="{{ $name }}" name="{{ $name }}" class="form-select" aria-label="Default select example" {{ $attributes(['value'=>old($name)]) }}>
             <option value="">None</option>
             @foreach ($list as $item)
-            <option value="{{ $item->id }}" @if (($old) == $item->id) selected @endif>
+            <option value="{{ $item->id }}" @if ((($old) ?? '') == $item->id) selected @endif>
                 {{ $item->name }}
             </option>
             @endforeach
