@@ -9,11 +9,13 @@
                 <div class="card-body">
 
                     @admin
-                    <div class="mb-2">
+                    <div class="mb-3">
                         Admin Links:
                         <a href="company/create"><input type="submit" value="Create" /></a>
                     </div>
                     @endadmin
+
+                    {{ $companies->links() }}
 
                     @foreach ($companies as $company)
                     <div class="alert alert-success" role="alert">
