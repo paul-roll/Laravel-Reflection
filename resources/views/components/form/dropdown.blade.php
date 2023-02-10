@@ -4,12 +4,11 @@
     </label>
 
     <div class="col-md-6">
-
         <select id="{{ $name }}" name="{{ $name }}" class="form-select" aria-label="Default select example" {{ $attributes(['value'=>old($name)]) }}>
             <option value="">None</option>
-            @foreach ($companies as $company)
-            <option value="{{ $company->id }}" @if (old($name) == $company->id) selected @endif>
-                {{ $company->name }}
+            @foreach ($list as $item)
+            <option value="{{ $item->id }}" @if (($old) == $item->id) selected @endif>
+                {{ $item->name }}
             </option>
             @endforeach
         </select>
