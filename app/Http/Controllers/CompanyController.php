@@ -59,6 +59,17 @@ class CompanyController extends Controller
 
     public function update(Company $company)
     {
+
+        if (isset($_POST['removeLogo'])) {
+
+            if ($company->logo ?? false) {
+                unlink(storage_path('app\\public\\company\\logos\\' . $company->logo));
+            }   
+            $company->update(['logo' => null]);
+            return back()->withInput();
+        }
+
+
         // Persist the edited company
         $attributes = $this->validateCompany();
 

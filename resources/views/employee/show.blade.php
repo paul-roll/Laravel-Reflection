@@ -32,7 +32,7 @@
                     <p><a href="../company/{{ $employee->company->id }}">{{ $employee->company->name }}</a></p>
                     <p>{{ $employee->company->email }}</p>
                     @if($employee->company->logo)
-                    <x-logo>../storage/company/logos/{{ $employee->company->logo }}</x-logo>
+                    <x-logo>{{ $employee->company->logo }}</x-logo>
                     @endif
                     <p>{{ $employee->company->website }}</p>
                     <hr>

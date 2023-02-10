@@ -20,7 +20,7 @@
                         <h3><a href="company/{{ $company->id }}">{{ $company->name }}</a></h3>
                         <p>{{ $company->email }}</p>
                         @if($company->logo)
-                        <x-logo>storage/company/logos/{{ $company->logo }}</x-logo>
+                        <x-logo>{{ $company->logo }}</x-logo>
                         @endif
                         <p>{{ $company->website }}</p>
                     </div>
