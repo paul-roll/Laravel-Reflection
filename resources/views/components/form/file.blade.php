@@ -7,6 +7,7 @@
         <div class="flex mt-6">
 
             @if ($value)
+                <input type="submit" class="d-none">
                 <input name="removeLogo" type="submit" value="Remove Logo" />
             @endif
 
