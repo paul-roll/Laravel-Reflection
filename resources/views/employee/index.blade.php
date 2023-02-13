@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">Employees</div>
                 <div class="card-body">
@@ -17,13 +17,28 @@
 
                     {{ $employees->links() }}
 
-                    @foreach ($employees as $employee)
-                    <div class="alert alert-success" role="alert">
-                        <h3><a href="employee/{{ $employee->id }}">{{ $employee->first }} {{ $employee->last }}</a></h3>
-                        <p>{{ $employee->email }}</p>
-                        <p>{{ $employee->phone }}</p>
+                    <div class="row">
+                        @foreach ($employees as $employee)
+                        <a href="employee/{{ $employee->id }}" class="col-lg-6 d-flex mb-2 text-reset text-decoration-none link-primary">
+                            @if (($employee->company) && ($employee->company->logo))
+                            <div class=""><x-logo>{{ $employee->company->logo }}</x-logo></div>
+                            @else
+                            <img src="{{ asset('storage/blank.jpg') }}" width="100" height="100" alt="" class="border-0">
+                            @endif
+                            <ul class="p-2">
+                                <li class="text-break list-group-item">
+                                    <h5>{{ $employee->first }} {{ $employee->last }}</h5>
+                                </li>
+                                @if ($employee->email)
+                                <li class="text-break list-group-item">{{ $employee->email }}</li>
+                                @endif
+                                @if ($employee->phone)
+                                <li class="text-break list-group-item">{{ $employee->phone }}</li>
+                                @endif
+                            </ul>
+                        </a>
+                        @endforeach
                     </div>
-                    @endforeach
 
                     {{ $employees->links() }}
                 </div>

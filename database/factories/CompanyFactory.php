@@ -39,7 +39,7 @@ class CompanyFactory extends Factory
 
         $website = null;
         if (rand(0, 2)) {
-            $website = 'http://' . str_replace([' ', ','], '', $name) . '.com';
+            $website = str_replace([' ', ','], '', $name) . '.com';
         }
         return [
             'name' => $name,

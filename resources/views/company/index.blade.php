@@ -3,30 +3,45 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Companies</div>
-                <div class="card-body">
-
+                <div class="card-header">
+                    Companies
                     @admin
-                    <div class="mb-3">
+                    <div class="float-end">
                         Admin Links:
                         <a href="company/create"><input type="submit" value="Create" /></a>
                     </div>
                     @endadmin
+                </div>
+                <div class="card-body">
+
+
 
                     {{ $companies->links() }}
 
-                    @foreach ($companies as $company)
-                    <div class="alert alert-success" role="alert">
-                        <h3><a href="company/{{ $company->id }}">{{ $company->name }}</a></h3>
-                        <p>{{ $company->email }}</p>
-                        @if($company->logo)
-                        <x-logo>{{ $company->logo }}</x-logo>
-                        @endif
-                        <p>{{ $company->website }}</p>
+                    <div class="row">
+                        @foreach ($companies as $company)
+                        <a href="company/{{ $company->id }}" class="col-lg-6 d-flex mb-2 text-reset text-decoration-none link-primary">
+                            @if ($company->logo)
+                            <div class=""><x-logo>{{ $company->logo }}</x-logo></div>
+                            @else
+                            <img src="{{ asset('storage/blank.jpg') }}" width="100" height="100" alt="" class="border-0">
+                            @endif
+                            <ul class="p-2">
+                                <li class="text-break list-group-item">
+                                    <h5>{{ $company->name }}</h5>
+                                </li>
+                                @if ($company->email)
+                                <li class="text-break list-group-item">{{ $company->email }}</li>
+                                @endif
+                                @if ($company->website)
+                                <li class="text-break list-group-item">{{ $company->website }}</li>
+                                @endif
+                            </ul>
+                        </a>
+                        @endforeach
                     </div>
-                    @endforeach
 
                     {{ $companies->links() }}
                 </div>
