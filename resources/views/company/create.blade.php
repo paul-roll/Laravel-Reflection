@@ -14,7 +14,7 @@
                         <x-form.input name="name" />
                         <x-form.input name="email" type="email" />
 
-                        <x-form.file name="logo" />
+                        <x-form.file name="logo" :value=null />
 
                         <x-form.input name="website" />
 
