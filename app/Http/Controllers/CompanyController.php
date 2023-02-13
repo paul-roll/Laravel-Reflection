@@ -45,6 +45,9 @@ class CompanyController extends Controller
         if ($attributes['logo'] ?? false) {
             $attributes['logo'] = basename(request()->file('logo')->store('public/company/logos'));
         }
+        if ($attributes['website'] ?? false) {
+            $attributes['website'] = str_replace("http://","",strtolower($attributes['website']));
+        }
 
         $company = Company::create($attributes);
         // return redirect('company/' . $company["id"]);
@@ -61,7 +64,6 @@ class CompanyController extends Controller
     {
 
         if (isset($_POST['removeLogo'])) {
-
             if ($company->logo ?? false) {
                 unlink(storage_path('app/public/company/logos/' . $company->logo));
             }   
@@ -69,9 +71,11 @@ class CompanyController extends Controller
             return back()->withInput();
         }
 
-
         // Persist the edited company
         $attributes = $this->validateCompany();
+        if ($attributes['website'] ?? false) {
+            $attributes['website'] = str_replace("http://","",strtolower($attributes['website']));
+        }
 
         if ($attributes['logo'] ?? false) {
             $attributes['logo'] = basename(request()->file('logo')->store('public/company/logos'));
