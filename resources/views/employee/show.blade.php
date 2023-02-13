@@ -29,10 +29,10 @@
                                     <h5>{{ $employee->first }} {{ $employee->last }}</h5>
                                 </li>
                                 @if ($employee->email)
-                                <li class="text-break list-group-item">{{ $employee->email }}</li>
+                                <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" href = "mailto:{{ $employee->email }}">{{ $employee->email }}</a></li>
                                 @endif
                                 @if ($employee->phone)
-                                <li class="text-break list-group-item">{{ $employee->phone }}</li>
+                                <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" href="tel:{{ $employee->phone }}">{{ $employee->phone }}</a></li>
                                 @endif
                             </ul>
                         </div>
