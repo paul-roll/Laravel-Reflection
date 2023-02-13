@@ -43,9 +43,10 @@ Route::get('/reset', function () {
     Auth::logout();
 
     // delete symlink
-    if (file_exists(public_path('storage'))) {
-        rmdir(public_path('storage'));
-    }
+    // had problems with it on cPanel
+    // if (file_exists(public_path('storage'))) {
+    //     rmdir(public_path('storage'));
+    // }
 
     // create symlink
     Artisan::call('storage:link');

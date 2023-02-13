@@ -43,7 +43,7 @@ class CompanyController extends Controller
         $attributes = $this->validateCompany();
 
         if ($attributes['logo'] ?? false) {
-            $attributes['logo'] = basename(request()->file('logo')->store('public\\company\\logos'));
+            $attributes['logo'] = basename(request()->file('logo')->store('public/company/logos'));
         }
 
         $company = Company::create($attributes);
@@ -63,7 +63,7 @@ class CompanyController extends Controller
         if (isset($_POST['removeLogo'])) {
 
             if ($company->logo ?? false) {
-                unlink(storage_path('app\\public\\company\\logos\\' . $company->logo));
+                unlink(storage_path('app/public/company/logos/' . $company->logo));
             }   
             $company->update(['logo' => null]);
             return back()->withInput();
@@ -74,10 +74,10 @@ class CompanyController extends Controller
         $attributes = $this->validateCompany();
 
         if ($attributes['logo'] ?? false) {
-            $attributes['logo'] = basename(request()->file('logo')->store('public\\company\\logos'));
+            $attributes['logo'] = basename(request()->file('logo')->store('public/company/logos'));
             
             if ($company->logo ?? false) {
-                unlink(storage_path('app\\public\\company\\logos\\' . $company->logo));
+                unlink(storage_path('app/public/company/logos/' . $company->logo));
             }
         }
 
@@ -91,7 +91,7 @@ class CompanyController extends Controller
         // Delete the company
 
         if ($company->logo ?? false) {
-            unlink(storage_path('app\\public\\company\\logos\\' . $company->logo));
+            unlink(storage_path('app/public/company/logos/' . $company->logo));
         }
 
         $company->delete();
