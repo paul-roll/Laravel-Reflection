@@ -23,7 +23,7 @@
                             @if (($employee->company) && ($employee->company->logo))
                             <div class=""><x-logo>{{ $employee->company->logo }}</x-logo></div>
                             @else
-                            <img src="{{ asset('storage/blank.jpg') }}" width="100" height="100" alt="" class="border-0">
+                            <img src="{{ asset('img/nologo.jpg') }}" width="100" height="100" alt="" class="border-0">
                             @endif
                             <ul class="p-2">
                                 <li class="text-break list-group-item">

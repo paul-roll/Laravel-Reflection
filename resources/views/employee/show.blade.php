@@ -21,14 +21,6 @@
                 </div>
                 <div class="card-body">
 
-
-
-                    <!-- <div class="alert alert-success" role="alert">
-                        <h3>{{ $employee->first }} {{ $employee->last }}</h3>
-                        <p>{{ $employee->email }}</p>
-                        <p>{{ $employee->phone }}</p>
-                    </div> -->
-
                     <div class="row">
                         <div class="col-lg-6 d-flex mb-2">
 
@@ -58,7 +50,7 @@
                             @if (($employee->company) && ($employee->company->logo))
                             <div class=""><x-logo>{{ $employee->company->logo }}</x-logo></div>
                             @else
-                            <img src="{{ asset('storage/blank.jpg') }}" width="100" height="100" alt="" class="border-0">
+                            <img src="{{ asset('img/nologo.jpg') }}" width="100" height="100" alt="" class="border-0">
                             @endif
                             <ul class="p-2">
                                 <li class="text-break list-group-item">
