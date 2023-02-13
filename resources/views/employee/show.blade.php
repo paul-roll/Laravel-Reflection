@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Employee
+                    Show Employee
                     @admin
                     <div class="float-end">
                         Admin Links:

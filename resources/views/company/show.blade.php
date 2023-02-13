@@ -6,7 +6,7 @@
         <div class="col-md-10">
 
             <div class="card">
-                <div class="card-header">Company
+                <div class="card-header">Show Company
                     @admin
                     <div class="float-end">
                         Admin Links:

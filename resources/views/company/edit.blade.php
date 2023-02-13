@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Placeholder</div>
+                <div class="card-header">Edit Company</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('company.update', $company) }}" enctype="multipart/form-data">
