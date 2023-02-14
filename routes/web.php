@@ -38,8 +38,10 @@ Route::group(['scheme' => 'https'], function () {
     Route::post('logout',  [LoginController::class, 'logout'])->name('logout');
 });
 
-Route::resource('company', CompanyController::class);
-Route::resource('employee', EmployeeController::class);
+Route::group(['middleware' => 'admin'], function () {
+    Route::resource('company', CompanyController::class);
+    Route::resource('employee', EmployeeController::class);
+});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
