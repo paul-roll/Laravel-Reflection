@@ -37,7 +37,7 @@
                                 <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" href = "mailto:{{ $company->email }}">{{ $company->email }}</a></li>
                                 @endif
                                 @if ($company->website)
-                                <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" target="_blank" href="http://{{ $company->website }}">{{ $company->website }}</a></li>
+                                <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" target="_blank" href="{{ $company->website }}">{{ $company->website }}</a></li>
                                 @endif
                             </ul>
                         </div>

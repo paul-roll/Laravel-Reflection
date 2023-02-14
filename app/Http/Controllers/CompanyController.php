@@ -40,9 +40,6 @@ class CompanyController extends Controller
         if ($attributes['logo'] ?? false) {
             $attributes['logo'] = basename(request()->file('logo')->store('public/company/logos'));
         }
-        if ($attributes['website'] ?? false) {
-            $attributes['website'] = str_replace("http://","",strtolower($attributes['website']));
-        }
 
         $company = Company::create($attributes);
         // return redirect('company/' . $company["id"]);
@@ -103,7 +100,7 @@ class CompanyController extends Controller
             "name" => ['required'],
             "email" => ['nullable', 'email:rfc,dns'],
             "logo" => ['nullable', 'image', 'dimensions:min_width=100,min_height=100'],
-            "website" => ['nullable'],
+            "website" => ['nullable', 'url'],
         ]);
     }
 }
