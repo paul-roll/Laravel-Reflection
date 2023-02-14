@@ -18,12 +18,12 @@
                         <div class="card">
                             <div class="card-header">
                                 Companies
-                                @admin
+                                @auth
                                 <div class="float-end">
                                     Admin Links:
                                     <a href="company/create"><input type="submit" value="Create" /></a>
                                 </div>
-                                @endadmin
+                                @endauth
                             </div>
                             <a href="company" class="card-body d-flex mb-2 text-reset text-decoration-none link-primary">
                                 <img src="{{ asset('img/nologo.jpg') }}" width="100" height="100" alt="" class="border-0">
@@ -42,12 +42,12 @@
                         <div class="card">
                             <div class="card-header">
                                 Employees
-                                @admin
+                                @auth
                                 <div class="float-end">
                                     Admin Links:
                                     <a href="employee/create"><input type="submit" value="Create" /></a>
                                 </div>
-                                @endadmin
+                                @endauth
                             </div>
                             <a href="employee" class="card-body d-flex mb-2 text-reset text-decoration-none link-primary">
                                 <img src="{{ asset('img/nologo.jpg') }}" width="100" height="100" alt="" class="border-0">

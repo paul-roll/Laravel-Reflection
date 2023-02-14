@@ -25,6 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ['companyCount' => Company::count(), 'employeeCount' => Employee::count()]);
+        return redirect('/');
     }
 }

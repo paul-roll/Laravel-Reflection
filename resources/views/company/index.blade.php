@@ -7,12 +7,10 @@
             <div class="card">
                 <div class="card-header">
                     Index Companies
-                    @admin
                     <div class="float-end">
                         Admin Links:
                         <a href="company/create"><input type="submit" value="Create" /></a>
                     </div>
-                    @endadmin
                 </div>
                 <div class="card-body">
 

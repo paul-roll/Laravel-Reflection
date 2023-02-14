@@ -7,7 +7,6 @@
 
             <div class="card">
                 <div class="card-header">Show Company
-                    @admin
                     <div class="float-end">
                         Admin Links:
                         <a href="{{ $company->id }}/edit"><input type="submit" value="Edit" /></a>
@@ -17,7 +16,6 @@
                             <input type="submit" value="Delete" />
                         </form>
                     </div>
-                    @endadmin
 
                 </div>
                 <div class="card-body">

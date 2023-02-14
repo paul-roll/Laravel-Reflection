@@ -30,15 +30,13 @@ Route::get('/', function () {
 
 
 Route::group(['scheme' => 'https'], function () {
-    // secure routes
-    // Auth::routes();
-    // Auth::routes(['register' => false]);
     Route::get('login',  [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login',  [LoginController::class, 'login']);
+    Route::get('logout',  [LoginController::class, 'logout']);
     Route::post('logout',  [LoginController::class, 'logout'])->name('logout');
 });
 
-Route::group(['middleware' => 'admin'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('company', CompanyController::class);
     Route::resource('employee', EmployeeController::class);
 });

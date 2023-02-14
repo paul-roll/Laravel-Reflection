@@ -8,12 +8,10 @@
                 <div class="card-header">Index Employees</div>
                 <div class="card-body">
 
-                    @admin
                     <div class="mb-3">
                         Admin Links:
                         <a href="employee/create"><input type="submit" value="Create" /></a>
                     </div>
-                    @endadmin
 
                     {{ $employees->links() }}
 
