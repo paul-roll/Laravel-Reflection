@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('admin')->except(['index', 'show']);
-    }
-
     public function index()
     {
         // Index all employees
