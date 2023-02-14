@@ -49,7 +49,7 @@
                                 </div>
                                 @endadmin
                             </div>
-                            <a href="company" class="card-body d-flex mb-2 text-reset text-decoration-none link-primary">
+                            <a href="employee" class="card-body d-flex mb-2 text-reset text-decoration-none link-primary">
                                 <img src="{{ asset('img/nologo.jpg') }}" width="100" height="100" alt="" class="border-0">
 
                                 <ul class="p-2">
