@@ -101,7 +101,7 @@ class CompanyController extends Controller
     {
         return request()->validate([
             "name" => ['required'],
-            "email" => ['nullable', 'email'],
+            "email" => ['nullable', 'email:rfc,dns'],
             "logo" => ['nullable', 'image', 'dimensions:min_width=100,min_height=100'],
             "website" => ['nullable'],
         ]);
