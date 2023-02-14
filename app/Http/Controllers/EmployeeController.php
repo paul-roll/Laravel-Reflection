@@ -73,7 +73,7 @@ class EmployeeController extends Controller
             "last" => ['required'],
             "company_id" => ['nullable', 'exists:companies,id'],
             "email" => ['nullable', 'email:rfc,dns'],
-            "phone" => ['nullable', 'regex:"^[+]{0,1}(?:\d[\s\-().]{0,2}){11,13}$"'],
+            "phone" => ['nullable', 'regex:"^[+]{0,1}(?:\d[\s\-().]{0,2}){10,13}$"'],
         ]);
     }
 }
