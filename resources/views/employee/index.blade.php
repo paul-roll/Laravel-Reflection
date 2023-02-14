@@ -5,13 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Index Employees</div>
-                <div class="card-body">
-
-                    <div class="mb-3">
+                <div class="card-header">
+                    Index Employees
+                    <div class="float-end">
                         Admin Links:
                         <a href="employee/create"><input type="submit" value="Create" /></a>
                     </div>
+                </div>
+                <div class="card-body">
 
                     {{ $employees->links() }}
 

@@ -14,8 +14,6 @@
                 </div>
                 <div class="card-body">
 
-
-
                     {{ $companies->links() }}
 
                     <div class="row">
