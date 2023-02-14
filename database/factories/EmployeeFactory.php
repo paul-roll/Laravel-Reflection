@@ -20,7 +20,7 @@ class EmployeeFactory extends Factory
 
         $email = null;
         if (rand(0,2)) {
-            $email = fake()->unique()->safeEmail();
+            $email = fake()->unique()->freeEmail();
         }
         $phone = null;
         if (rand(0,2)) {
