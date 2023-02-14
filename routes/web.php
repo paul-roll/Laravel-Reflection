@@ -43,9 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/reset', function () {
-
-    // // logout
+Route::get('/setup', function () {
+    // logout
     Session::flush();
     Auth::logout();
 
@@ -58,18 +57,21 @@ Route::get('/reset', function () {
     // create symlink
     Artisan::call('storage:link');
 
-    // clean out old company images
+    // Delete old company images
     array_map('unlink', glob(storage_path('app/public/company/logos/*')));
 
     Artisan::call('migrate:fresh --seed --force');
 
-    // return redirect ('login');
     return redirect('/');
-    // })->middleware('admin');
-
-            // if($this->app->environment('production')) {
-        //     \URL::forceScheme('https');
-        // }
-
-
 });
+
+Route::get('/seed', function () {
+
+    // Delete old company images
+    array_map('unlink', glob(storage_path('app/public/company/logos/*')));
+
+    Artisan::call('migrate:fresh --seed --force');
+
+    return redirect('/');
+
+})->middleware('auth');
