@@ -5,7 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit Employee</div>
+
+                <div class="card-header">
+                    <div class="mt-1">
+                        <h3 class="d-inline">
+                            Edit Employee
+                        </h3>
+                        <form class="mx-1 float-end" class="d-inline" method="POST" action="{{ route('employee.destroy', $employee) }}">
+                            @csrf
+                            @method('DELETE')
+                            <input class="btn btn-danger" type="submit" value="Delete" />
+                        </form>
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('employee.update', $employee) }}" enctype="multipart/form-data">

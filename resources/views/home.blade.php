@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+
 
                 <div class="card-body row">
                     @auth
@@ -17,13 +17,11 @@
                     <div class="col-lg-6 mb-3">
                         <div class="card">
                             <div class="card-header">
-                                Companies
-                                @auth
-                                <div class="float-end">
-                                    Admin Links:
-                                    <a href="company/create"><input type="submit" value="Create" /></a>
+                                <div class="mt-1">
+                                    <h3>
+                                        Companies
+                                    </h3>
                                 </div>
-                                @endauth
                             </div>
                             <a href="company" class="card-body d-flex mb-2 text-reset text-decoration-none link-primary">
                                 <img src="{{ asset('img/nologo.jpg') }}" width="100" height="100" alt="" class="border-0">
@@ -41,13 +39,11 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header">
-                                Employees
-                                @auth
-                                <div class="float-end">
-                                    Admin Links:
-                                    <a href="employee/create"><input type="submit" value="Create" /></a>
+                                <div class="mt-1">
+                                    <h3>
+                                        Employees
+                                    </h3>
                                 </div>
-                                @endauth
                             </div>
                             <a href="employee" class="card-body d-flex mb-2 text-reset text-decoration-none link-primary">
                                 <img src="{{ asset('img/nologo.jpg') }}" width="100" height="100" alt="" class="border-0">

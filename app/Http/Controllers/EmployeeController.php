@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Employee;
-use Illuminate\Http\Request;
+use Request;
 
 class EmployeeController extends Controller
 {
@@ -15,6 +15,23 @@ class EmployeeController extends Controller
         return view('employee.index', [
             'employees' => Employee::latest()->paginate(10)
         ]);
+    }
+
+    public function search()
+    {
+        $search = Request::get ( 'q' );
+        if($search == ""){
+            return redirect('/employee');
+        }
+
+        $results = Employee::where('first', 'LIKE', '%' . $search . '%')->orWhere('last', 'LIKE', '%' . $search . '%')->paginate(10)->setPath('');
+        $results->appends ( array (
+            'q' => Request::get ( 'q' ) 
+          ) );
+
+        return view('employee.index', [
+            'employees' => $results
+        ])->withMessage('Search Employees: \'' . $search . '\'');
     }
 
     public function show($id)
@@ -64,21 +81,6 @@ class EmployeeController extends Controller
 
         $employee->delete();
         return redirect('employee')->with('success', 'Deleted!');
-    }
-
-    public function search($string)
-    {
-        $results = Employee::where('first', 'LIKE', '%' . $string . '%')->orWhere('last', 'LIKE', '%' . $string . '%')->paginate(10)->setPath('');
-
-        if (count($results) > 0) {
-            return view('employee.index', [
-                'employees' => $results
-            ])->withMessage('Search results for \'' . $string . '\'');
-        } else {
-            return view('employee.index', [
-                'employees' => $results
-            ])->withMessage('Search for \'' . $string . '\' returned no results!');
-        }
     }
 
     protected function validateEmployee(?Employee $employee = null): array

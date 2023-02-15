@@ -4,26 +4,34 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-
             <div class="card">
                 <div class="card-header">
-                    Index Companies
-                    <div class="float-end">
-                        Admin Links:
-                        <a href="{{ asset('company/create') }}"><input type="submit" value="Create" /></a>
+                    <div class="mt-1">
+                        <h3 class="d-inline">
+                            @if (isset($message))
+                            {{ $message }}
+                            @else
+                            Index Companies
+                            @endif
+                        </h3>
+                        <a class="mx-1 float-end" href="{{ asset('company/create') }}"><input class="btn btn-secondary" type="submit" value="Create New Company" /></a>
                     </div>
                 </div>
                 <div class="card-body">
 
-                    @if (isset($message))
-                    <div class="col-lg-6 d-flex mb-2 text-reset">
-                        <h3>{{ $message }}</h3>
+                    <div class="col-md-6">
+                        <form class="input-group mb-3" action="{{ asset('company/search') }}" method="GET" role="search">
+                            <input class="btn btn-outline-secondary" type="submit" value="Search" id="button-addon1" />
+                            <input id="q" name="q" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                        </form>
                     </div>
-                    @endif
 
                     {{ $companies->links() }}
 
                     <div class="row">
+                        @if (count($companies) == 0)
+                        <h3 class="text-center">No companies found!</h3>
+                        @endif
                         @foreach ($companies as $company)
                         <a href="{{ asset('company/' . $company->id) }}" class="col-lg-6 d-flex mb-2 text-reset text-decoration-none link-primary">
                             @if ($company->logo)
@@ -47,6 +55,7 @@
                     </div>
 
                     {{ $companies->links() }}
+                    
                 </div>
             </div>
         </div>

@@ -37,9 +37,9 @@ Route::group(['scheme' => 'https'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('company/search/{string}', [CompanyController::class, 'search']);
+    Route::get('company/search', [CompanyController::class, 'search']);
     Route::resource('company', CompanyController::class);
-    Route::get('employee/search/{string}', [EmployeeController::class, 'search']);
+    Route::get('employee/search', [EmployeeController::class, 'search']);
     Route::resource('employee', EmployeeController::class);
 });
 

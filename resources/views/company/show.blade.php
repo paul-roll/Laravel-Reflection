@@ -4,24 +4,23 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-
             <div class="card">
-                <div class="card-header">Show Company
-                    <div class="float-end">
-                        Admin Links:
-                        <a href="{{ asset('company/' . $company->id . '/edit') }}"><input type="submit" value="Edit" /></a>
-                        <form class="d-inline" method="POST" action="{{ $company->id }}">
+
+                <div class="card-header">
+                    <div class="mt-1">
+                        <h3 class="d-inline">
+                            Show Company
+                        </h3>
+                        <form class="mx-1 float-end" class="d-inline" method="POST" action="{{ route('company.destroy', $company) }}">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="Delete" />
+                            <input class="btn btn-danger" type="submit" value="Delete" />
                         </form>
+                        <a class="mx-1 float-end" href="{{ asset('company/' . $company->id . '/edit') }}"><input class="btn btn-secondary" type="submit" value="Edit" /></a>
                     </div>
-
                 </div>
+
                 <div class="card-body">
-
-
-
                     <div class="row">
                         <div class="col-lg-6 d-flex mb-2">
                             @if ($company->logo)

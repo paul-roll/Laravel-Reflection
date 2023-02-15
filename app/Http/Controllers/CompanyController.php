@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
-use Illuminate\Http\Request;
+use Request;
 
 class CompanyController extends Controller
 {
@@ -13,6 +13,23 @@ class CompanyController extends Controller
         return view('company.index', [
             'companies' => Company::latest()->paginate(10)
         ]);
+    }
+
+    public function search()
+    {
+        $search = Request::get ( 'q' );
+        if($search == ""){
+            return redirect('/company');
+        }
+
+        $results = Company::where('name', 'LIKE', '%' . $search . '%')->paginate(10)->setPath('');
+        $results->appends ( array (
+            'q' => Request::get ( 'q' ) 
+          ) );
+
+        return view('company.index', [
+            'companies' => $results
+        ])->withMessage('Search Compaines: \'' . $search . '\'');
     }
 
     public function show($id)
@@ -64,9 +81,6 @@ class CompanyController extends Controller
 
         // Persist the edited company
         $attributes = $this->validateCompany();
-        if ($attributes['website'] ?? false) {
-            $attributes['website'] = str_replace("http://", "", strtolower($attributes['website']));
-        }
 
         if ($attributes['logo'] ?? false) {
             $attributes['logo'] = basename(request()->file('logo')->store('public/company/logos'));
@@ -91,21 +105,6 @@ class CompanyController extends Controller
 
         $company->delete();
         return redirect('company')->with('success', 'Deleted!');
-    }
-
-    public function search($string)
-    {
-        $results = Company::where('name', 'LIKE', '%' . $string . '%')->paginate(10)->setPath('');
-
-        if (count($results) > 0) {
-            return view('company.index', [
-                'companies' => $results
-            ])->withMessage('Search results for \'' . $string . '\'');
-        } else {
-            return view('company.index', [
-                'companies' => $results
-            ])->withMessage('Search for ' . $string . ' returned no results!');
-        }
     }
 
     protected function validateCompany(?Company $company = null): array

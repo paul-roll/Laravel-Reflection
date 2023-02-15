@@ -5,23 +5,24 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+
                 <div class="card-header">
-                    Show Employee
-                    <div class="float-end">
-                        Admin Links:
-                        <a href="{{ asset('employee/' . $employee->id . '/edit') }}"><input type="submit" value="Edit" /></a>
-                        <form class="d-inline" method="POST" action="{{ $employee->id }}">
+                    <div class="mt-1">
+                        <h3 class="d-inline">
+                            Show Employee
+                        </h3>
+                        <form class="mx-1 float-end" class="d-inline" method="POST" action="{{ route('employee.destroy', $employee) }}">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="Delete" />
+                            <input class="btn btn-danger" type="submit" value="Delete" />
                         </form>
+                        <a class="mx-1 float-end" href="{{ asset('employee/' . $employee->id . '/edit') }}"><input class="btn btn-secondary" type="submit" value="Edit" /></a>
                     </div>
                 </div>
-                <div class="card-body">
 
+                <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6 d-flex mb-2">
-
                             <ul class="p-2">
                                 <li class="text-break list-group-item">
                                     <h5>{{ $employee->first }} {{ $employee->last }}</h5>
