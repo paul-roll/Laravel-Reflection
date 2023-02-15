@@ -66,6 +66,21 @@ class EmployeeController extends Controller
         return redirect('employee')->with('success', 'Deleted!');
     }
 
+    public function search($string)
+    {
+        $results = Employee::where('first', 'LIKE', '%' . $string . '%')->orWhere('last', 'LIKE', '%' . $string . '%')->paginate(10)->setPath('');
+
+        if (count($results) > 0) {
+            return view('employee.index', [
+                'employees' => $results
+            ])->withMessage('Search results for \'' . $string . '\'');
+        } else {
+            return view('employee.index', [
+                'employees' => $results
+            ])->withMessage('Search for \'' . $string . '\' returned no results!');
+        }
+    }
+
     protected function validateEmployee(?Employee $employee = null): array
     {
         return request()->validate([

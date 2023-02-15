@@ -9,7 +9,7 @@
                     Show Employee
                     <div class="float-end">
                         Admin Links:
-                        <a href="{{ $employee->id }}/edit"><input type="submit" value="Edit" /></a>
+                        <a href="{{ asset('employee/' . $employee->id . '/edit') }}"><input type="submit" value="Edit" /></a>
                         <form class="d-inline" method="POST" action="{{ $employee->id }}">
                             @csrf
                             @method('DELETE')
@@ -27,7 +27,7 @@
                                     <h5>{{ $employee->first }} {{ $employee->last }}</h5>
                                 </li>
                                 @if ($employee->email)
-                                <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" href = "mailto:{{ $employee->email }}">{{ $employee->email }}</a></li>
+                                <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" href="mailto:{{ $employee->email }}">{{ $employee->email }}</a></li>
                                 @endif
                                 @if ($employee->phone)
                                 <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" href="tel:{{ $employee->phone }}">{{ $employee->phone }}</a></li>
@@ -44,7 +44,7 @@
                 <div class="card-header">Company</div>
                 <div class="card-body">
                     <div class="row">
-                        <a href="../company/{{ $employee->company->id }}" class="d-flex mb-2 text-reset text-decoration-none link-primary">
+                        <a href="{{ asset('../company/' . $employee->company->id) }}" class="d-flex mb-2 text-reset text-decoration-none link-primary">
                             @if (($employee->company) && ($employee->company->logo))
                             <div class=""><x-logo>{{ $employee->company->logo }}</x-logo></div>
                             @else

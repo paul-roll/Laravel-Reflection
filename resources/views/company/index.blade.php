@@ -4,21 +4,28 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
+
             <div class="card">
                 <div class="card-header">
                     Index Companies
                     <div class="float-end">
                         Admin Links:
-                        <a href="company/create"><input type="submit" value="Create" /></a>
+                        <a href="{{ asset('company/create') }}"><input type="submit" value="Create" /></a>
                     </div>
                 </div>
                 <div class="card-body">
+
+                    @if (isset($message))
+                    <div class="col-lg-6 d-flex mb-2 text-reset">
+                        <h3>{{ $message }}</h3>
+                    </div>
+                    @endif
 
                     {{ $companies->links() }}
 
                     <div class="row">
                         @foreach ($companies as $company)
-                        <a href="company/{{ $company->id }}" class="col-lg-6 d-flex mb-2 text-reset text-decoration-none link-primary">
+                        <a href="{{ asset('company/' . $company->id) }}" class="col-lg-6 d-flex mb-2 text-reset text-decoration-none link-primary">
                             @if ($company->logo)
                             <div class=""><x-logo>{{ $company->logo }}</x-logo></div>
                             @else

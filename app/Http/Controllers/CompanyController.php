@@ -24,7 +24,6 @@ class CompanyController extends Controller
         } else {
             return redirect('company');
         }
-        
     }
 
     public function create()
@@ -58,7 +57,7 @@ class CompanyController extends Controller
         if (isset($_POST['removeLogo'])) {
             if ($company->logo ?? false) {
                 unlink(storage_path('app/public/company/logos/' . $company->logo));
-            }   
+            }
             $company->update(['logo' => null]);
             return back()->withInput();
         }
@@ -66,20 +65,20 @@ class CompanyController extends Controller
         // Persist the edited company
         $attributes = $this->validateCompany();
         if ($attributes['website'] ?? false) {
-            $attributes['website'] = str_replace("http://","",strtolower($attributes['website']));
+            $attributes['website'] = str_replace("http://", "", strtolower($attributes['website']));
         }
 
         if ($attributes['logo'] ?? false) {
             $attributes['logo'] = basename(request()->file('logo')->store('public/company/logos'));
-            
+
             if ($company->logo ?? false) {
                 unlink(storage_path('app/public/company/logos/' . $company->logo));
             }
         }
 
         $company->update($attributes);
-      
-        return redirect('company/'. $company->id);
+
+        return redirect('company/' . $company->id);
     }
 
     public function destroy(Company $company)
@@ -92,6 +91,21 @@ class CompanyController extends Controller
 
         $company->delete();
         return redirect('company')->with('success', 'Deleted!');
+    }
+
+    public function search($string)
+    {
+        $results = Company::where('name', 'LIKE', '%' . $string . '%')->paginate(10)->setPath('');
+
+        if (count($results) > 0) {
+            return view('company.index', [
+                'companies' => $results
+            ])->withMessage('Search results for \'' . $string . '\'');
+        } else {
+            return view('company.index', [
+                'companies' => $results
+            ])->withMessage('Search for ' . $string . ' returned no results!');
+        }
     }
 
     protected function validateCompany(?Company $company = null): array

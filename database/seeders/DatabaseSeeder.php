@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        $num_companies = 10;
-        $num_employees = 20;
+        $num_companies = 100;
+        $num_employees = 200;
 
         Company::factory($num_companies)->create();
         for ($i = 1; $i <= $num_employees; $i++) {

@@ -9,16 +9,22 @@
                     Index Employees
                     <div class="float-end">
                         Admin Links:
-                        <a href="employee/create"><input type="submit" value="Create" /></a>
+                        <a href="{{ asset('employee/create') }}"><input type="submit" value="Create" /></a>
                     </div>
                 </div>
                 <div class="card-body">
+
+                    @if (isset($message))
+                    <div class="col-lg-6 d-flex mb-2 text-reset">
+                        <h3>{{ $message }}</h3>
+                    </div>
+                    @endif
 
                     {{ $employees->links() }}
 
                     <div class="row">
                         @foreach ($employees as $employee)
-                        <a href="employee/{{ $employee->id }}" class="col-lg-6 d-flex mb-2 text-reset text-decoration-none link-primary">
+                        <a href="{{ asset('employee/' . $employee->id) }}" class="col-lg-6 d-flex mb-2 text-reset text-decoration-none link-primary">
                             @if (($employee->company) && ($employee->company->logo))
                             <div class=""><x-logo>{{ $employee->company->logo }}</x-logo></div>
                             @else

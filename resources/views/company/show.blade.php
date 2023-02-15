@@ -9,7 +9,7 @@
                 <div class="card-header">Show Company
                     <div class="float-end">
                         Admin Links:
-                        <a href="{{ $company->id }}/edit"><input type="submit" value="Edit" /></a>
+                        <a href="{{ asset('company/' . $company->id . '/edit') }}"><input type="submit" value="Edit" /></a>
                         <form class="d-inline" method="POST" action="{{ $company->id }}">
                             @csrf
                             @method('DELETE')
@@ -34,7 +34,7 @@
                                     <h5>{{ $company->name }}</h5>
                                 </li>
                                 @if ($company->email)
-                                <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" href = "mailto:{{ $company->email }}">{{ $company->email }}</a></li>
+                                <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" href="mailto:{{ $company->email }}">{{ $company->email }}</a></li>
                                 @endif
                                 @if ($company->website)
                                 <li class="text-break list-group-item"><a class="text-reset text-decoration-none link-primary" target="_blank" href="{{ $company->website }}">{{ $company->website }}</a></li>
@@ -51,7 +51,7 @@
                 <div class="card-body">
                     <div class="row">
                         @foreach ($company->employees as $employee)
-                        <a href="../employee/{{ $employee->id }}" class="col-lg-6 col-xxl-4 d-flex mb-2 text-reset text-decoration-none link-primary">
+                        <a href="{{ asset('../employee/' . $employee->id) }}" class="col-lg-6 col-xxl-4 d-flex mb-2 text-reset text-decoration-none link-primary">
                             <ul class="p-2">
                                 <li class="text-break list-group-item">
                                     <h5>{{ $employee->first }} {{ $employee->last }}</h5>

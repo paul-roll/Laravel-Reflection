@@ -37,9 +37,12 @@ Route::group(['scheme' => 'https'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('company/search/{string}', [CompanyController::class, 'search']);
     Route::resource('company', CompanyController::class);
+    Route::get('employee/search/{string}', [EmployeeController::class, 'search']);
     Route::resource('employee', EmployeeController::class);
 });
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -73,5 +76,4 @@ Route::get('/seed', function () {
     Artisan::call('migrate:fresh --seed --force');
 
     return redirect('/');
-
 })->middleware('auth');
