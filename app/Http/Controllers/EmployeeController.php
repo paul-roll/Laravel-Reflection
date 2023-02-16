@@ -86,10 +86,10 @@ class EmployeeController extends Controller
     protected function validateEmployee(?Employee $employee = null): array
     {
         return request()->validate([
-            "first" => ['required'],
-            "last" => ['required'],
+            "first" => ['required','max:255'],
+            "last" => ['required','max:255'],
             "company_id" => ['nullable', 'exists:companies,id'],
-            "email" => ['nullable', 'email:rfc,dns'],
+            "email" => ['nullable', 'email:rfc,dns','max:255'],
             "phone" => ['nullable', 'regex:"^(\+\d{1,3}[\s.-]?)?\(?\d{3,5}\)?[\s.-]?\d{3}[\s.-]?\d{3,4}$"'],
         ]);
     }

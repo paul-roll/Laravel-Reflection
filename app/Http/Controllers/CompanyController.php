@@ -110,10 +110,10 @@ class CompanyController extends Controller
     protected function validateCompany(?Company $company = null): array
     {
         return request()->validate([
-            "name" => ['required'],
-            "email" => ['nullable', 'email:rfc,dns'],
-            "logo" => ['nullable', 'image', 'dimensions:min_width=100,min_height=100'],
-            "website" => ['nullable', 'url'],
+            "name" => ['required','max:255'],
+            "email" => ['nullable', 'email:rfc,dns','max:255'],
+            "logo" => ['nullable', 'image', 'dimensions:min_width=100,min_height=100','max:1024'],
+            "website" => ['nullable', 'url','max:255'],
         ]);
     }
 }
