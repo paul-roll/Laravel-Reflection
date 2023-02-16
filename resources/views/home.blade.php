@@ -11,8 +11,8 @@
                         <h3>Laravel Reflection</h3>
                     </div>
                 </div>
-                <div class="card-body">
-                    <h4 class="m-3">Example project to demonstrate CRUD functionality on Companies and Employees</h4>
+                <div class="mx-3 card-body">
+                    <h4 class="my-3">An example Laravel project to demonstrate an admin system for managing companies and employees.</h4>
                     <p class="mb-0">Authorization credentials for this project:</p>
                     <ul>
                         <li><span class="fw-bold">Email: </span> admin@admin.com</li>
