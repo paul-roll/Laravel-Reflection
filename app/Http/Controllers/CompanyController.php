@@ -23,7 +23,13 @@ class CompanyController extends Controller
             return redirect('/company');
         }
 
-        $results = Company::where('name', 'LIKE', '%' . $search . '%')->latest('updated_at')->paginate(10)->setPath('');
+        $searchValues = preg_split('/\s+/', $search, -1, PREG_SPLIT_NO_EMPTY);
+        $results = Company::where(function ($q) use ($searchValues) {
+            foreach ($searchValues as $value) {
+                $q->orWhere('name', 'like', '%' . $value . '%');
+            }
+        })->latest('updated_at')->paginate(10)->setPath('');
+
         $results->appends ( array (
             'q' => Request::get ( 'q' ) 
           ) );
