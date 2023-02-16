@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Models\Company;
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,22 @@ use Illuminate\Support\Facades\Session;
 */
 
 Route::get('/', function () {
+
+    // setup code
+    if (!Schema::hasTable('users') || (!User::where('name', '=', 'Admin')->exists())) {
+        // Code to create table
+        Session::flush();
+        Auth::logout();
+
+        // create symlink
+        Artisan::call('storage:link');
+
+        // Delete old company images
+        array_map('unlink', glob(storage_path('app/public/company/logos/*')));
+
+        Artisan::call('migrate:fresh --seed --force');
+    }
+
     return view('home', ['companyCount' => Company::count(), 'employeeCount' => Employee::count()]);
 });
 
@@ -46,34 +63,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/setup', function () {
-    // logout
-    Session::flush();
-    Auth::logout();
 
-    // delete symlink
-    // had problems with it on cPanel
-    // if (file_exists(public_path('storage'))) {
-    //     rmdir(public_path('storage'));
-    // }
-
-    // create symlink
-    Artisan::call('storage:link');
-
-    // Delete old company images
-    array_map('unlink', glob(storage_path('app/public/company/logos/*')));
-
-    Artisan::call('migrate:fresh --seed --force');
-
-    return redirect('/');
-});
-
-Route::get('/seed', function () {
-
-    // Delete old company images
-    array_map('unlink', glob(storage_path('app/public/company/logos/*')));
-
-    Artisan::call('migrate:fresh --seed --force');
-
-    return redirect('/');
-})->middleware('auth');
