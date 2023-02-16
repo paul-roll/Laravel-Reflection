@@ -12,7 +12,7 @@
             @endif
 
             @if ($value)
-            <div class="mt-3">
+            <div class="my-2">
                 <x-logo>{{ $value }}</x-logo>
             </div>
             @endif
