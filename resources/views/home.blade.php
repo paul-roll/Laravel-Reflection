@@ -8,10 +8,11 @@
             <div class="card">
                 <div class="card-header">
                     <div class="mt-1">
-                        <h3>Example project to demonstrate CRUD functionality on Companies and Employees</h3>
+                        <h3>Laravel Reflection</h3>
                     </div>
                 </div>
                 <div class="card-body">
+                    <h4 class="m-3">Example project to demonstrate CRUD functionality on Companies and Employees</h4>
                     <p class="mb-0">Authorization credentials for this project:</p>
                     <ul>
                         <li><span class="fw-bold">Email: </span> admin@admin.com</li>
