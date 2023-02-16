@@ -90,7 +90,7 @@ class EmployeeController extends Controller
             "last" => ['required'],
             "company_id" => ['nullable', 'exists:companies,id'],
             "email" => ['nullable', 'email:rfc,dns'],
-            "phone" => ['nullable', 'regex:"^[+]{0,1}(?:\d[\s\-().]{0,2}){10,13}$"'],
+            "phone" => ['nullable', 'regex:"^(\+\d{1,3}[\s.-]?)?\(?\d{3,5}\)?[\s.-]?\d{3}[\s.-]?\d{3,4}$"'],
         ]);
     }
 }
