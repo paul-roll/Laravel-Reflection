@@ -50,7 +50,7 @@
                 <div class="card-body">
                     <div class="row">
                         @foreach ($company->employees as $employee)
-                        <a href="{{ asset('../employee/' . $employee->id) }}" class="col-lg-6 col-xxl-4 d-flex mb-2 text-reset text-decoration-none link-primary">
+                        <a href="{{ asset('employee/' . $employee->id) }}" class="col-lg-6 col-xxl-4 d-flex mb-2 text-reset text-decoration-none link-primary">
                             <ul class="p-2">
                                 <li class="text-break list-group-item">
                                     <h5>{{ $employee->first }} {{ $employee->last }}</h5>

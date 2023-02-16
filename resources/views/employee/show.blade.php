@@ -45,7 +45,7 @@
                 <div class="card-header">Company</div>
                 <div class="card-body">
                     <div class="row">
-                        <a href="{{ asset('../company/' . $employee->company->id) }}" class="d-flex mb-2 text-reset text-decoration-none link-primary">
+                        <a href="{{ asset('company/' . $employee->company->id) }}" class="d-flex mb-2 text-reset text-decoration-none link-primary">
                             @if (($employee->company) && ($employee->company->logo))
                             <div class=""><x-logo>{{ $employee->company->logo }}</x-logo></div>
                             @else
