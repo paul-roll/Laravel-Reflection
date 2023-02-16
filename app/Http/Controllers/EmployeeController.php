@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Employee;
+use App\Http\Requests\ValidateEmployee;
 use Request;
 
 class EmployeeController extends Controller
@@ -51,9 +52,9 @@ class EmployeeController extends Controller
         return view('employee.create', ['companies' => Company::all()]);
     }
 
-    public function store()
+    public function store(ValidateEmployee $request)
     {
-        $attributes = $this->validateEmployee();
+        $attributes = $request->validated();
 
         $employee = Employee::create($attributes);
         return redirect('employee/' . $employee->id);
@@ -65,10 +66,10 @@ class EmployeeController extends Controller
         return view('employee.edit', ['employee' => $employee, 'companies' => Company::all()]);
     }
 
-    public function update(Employee $employee)
+    public function update(Employee $employee, ValidateEmployee $request)
     {
         // Persist the edited employee
-        $attributes = $this->validateEmployee();
+        $attributes = $request->validated();
 
         $employee->update($attributes);
 
@@ -81,16 +82,5 @@ class EmployeeController extends Controller
 
         $employee->delete();
         return redirect('employee')->with('success', 'Deleted!');
-    }
-
-    protected function validateEmployee(?Employee $employee = null): array
-    {
-        return request()->validate([
-            "first" => ['required','max:255'],
-            "last" => ['required','max:255'],
-            "company_id" => ['nullable', 'exists:companies,id'],
-            "email" => ['nullable', 'email:rfc,dns','max:255'],
-            "phone" => ['nullable', 'regex:"^(\+\d{1,3}[\s.-]?)?\(?\d{3,5}\)?[\s.-]?\d{3}[\s.-]?\d{3,4}$"'],
-        ]);
     }
 }

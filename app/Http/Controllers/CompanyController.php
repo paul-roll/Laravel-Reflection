@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Http\Requests\ValidateCompany;
 use Request;
 
 class CompanyController extends Controller
@@ -49,9 +50,9 @@ class CompanyController extends Controller
         return view('company.create');
     }
 
-    public function store()
+    public function store(ValidateCompany $request)
     {
-        $attributes = $this->validateCompany();
+        $attributes = $request->validated();
 
         if ($attributes['logo'] ?? false) {
             $attributes['logo'] = basename(request()->file('logo')->store('public/company/logos'));
@@ -68,7 +69,7 @@ class CompanyController extends Controller
         return view('company.edit', ['company' => $company]);
     }
 
-    public function update(Company $company)
+    public function update(Company $company, ValidateCompany $request)
     {
 
         if (isset($_POST['removeLogo'])) {
@@ -80,7 +81,7 @@ class CompanyController extends Controller
         }
 
         // Persist the edited company
-        $attributes = $this->validateCompany();
+        $attributes = $request->validated();
 
         if ($attributes['logo'] ?? false) {
             $attributes['logo'] = basename(request()->file('logo')->store('public/company/logos'));
@@ -105,15 +106,5 @@ class CompanyController extends Controller
 
         $company->delete();
         return redirect('company')->with('success', 'Deleted!');
-    }
-
-    protected function validateCompany(?Company $company = null): array
-    {
-        return request()->validate([
-            "name" => ['required','max:255'],
-            "email" => ['nullable', 'email:rfc,dns','max:255'],
-            "logo" => ['nullable', 'image', 'dimensions:min_width=100,min_height=100','max:1024'],
-            "website" => ['nullable', 'url','max:255'],
-        ]);
     }
 }
