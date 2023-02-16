@@ -13,7 +13,7 @@ class EmployeeController extends Controller
     {
         // Index all employees
         return view('employee.index', [
-            'employees' => Employee::latest()->paginate(10)
+            'employees' => Employee::latest('updated_at')->paginate(10)
         ]);
     }
 
@@ -24,7 +24,7 @@ class EmployeeController extends Controller
             return redirect('/employee');
         }
 
-        $results = Employee::where('first', 'LIKE', '%' . $search . '%')->orWhere('last', 'LIKE', '%' . $search . '%')->paginate(10)->setPath('');
+        $results = Employee::where('first', 'LIKE', '%' . $search . '%')->orWhere('last', 'LIKE', '%' . $search . '%')->latest('updated_at')->paginate(10)->setPath('');
         $results->appends ( array (
             'q' => Request::get ( 'q' ) 
           ) );

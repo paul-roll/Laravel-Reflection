@@ -11,7 +11,7 @@ class CompanyController extends Controller
     {
         // Index all
         return view('company.index', [
-            'companies' => Company::latest()->paginate(10)
+            'companies' => Company::latest('updated_at')->paginate(10)
         ]);
     }
 
@@ -22,7 +22,7 @@ class CompanyController extends Controller
             return redirect('/company');
         }
 
-        $results = Company::where('name', 'LIKE', '%' . $search . '%')->paginate(10)->setPath('');
+        $results = Company::where('name', 'LIKE', '%' . $search . '%')->latest('updated_at')->paginate(10)->setPath('');
         $results->appends ( array (
             'q' => Request::get ( 'q' ) 
           ) );
