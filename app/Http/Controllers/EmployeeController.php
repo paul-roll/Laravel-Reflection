@@ -20,15 +20,21 @@ class EmployeeController extends Controller
 
     public function search()
     {
-        $search = Request::get ( 'q' );
-        if($search == ""){
+        $search = Request::get('q');
+        if ($search == "") {
             return redirect('/employee');
         }
 
-        $results = Employee::where('first', 'LIKE', '%' . $search . '%')->orWhere('last', 'LIKE', '%' . $search . '%')->latest('updated_at')->paginate(10)->setPath('');
-        $results->appends ( array (
-            'q' => Request::get ( 'q' ) 
-          ) );
+        $searchValues = preg_split('/\s+/', $search, -1, PREG_SPLIT_NO_EMPTY);
+        $results = Employee::where(function ($q) use ($searchValues) {
+            foreach ($searchValues as $value) {
+                $q->orWhere('first', 'like', '%' . $value . '%')->orWhere('last', 'like', '%' . $value . '%');
+            }
+        })->latest('updated_at')->paginate(10)->setPath('');
+
+        $results->appends(array(
+            'q' => Request::get('q')
+        ));
 
         return view('employee.index', [
             'employees' => $results
