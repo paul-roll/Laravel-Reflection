@@ -26,9 +26,9 @@
             </ul>
         </div>
 
-        <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+        <div class="d-none flex-sm-fill d-sm-block align-items-sm-center justify-content-sm-between">
             <div>
-                <p class="small text-muted">
+                <p class="small text-muted mb-1 mx-1">
                     {!! __('Showing') !!}
                     <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
                     {!! __('to') !!}
@@ -40,7 +40,7 @@
             </div>
 
             <div>
-                <ul class="pagination">
+                <ul class="pagination pagination-sm">
                     {{-- Previous Page Link --}}
                     @if ($paginator->onFirstPage())
                         <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
