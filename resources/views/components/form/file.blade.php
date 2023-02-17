@@ -11,13 +11,16 @@
                 <input name="removeLogo" type="submit" value="Remove Logo" />
             @endif
 
-            @if ($value)
+            
             <div class="my-2">
-                <x-logo>{{ $value }}</x-logo>
+                @if ($value)
+                <img src="{{ asset('storage/company/logos/' . $value) }}" width="100" height="100" alt="" id="preview-selected-image">
+                @else
+                <img src="{{ asset('img/nologo.jpg') }}" width="100" height="100" alt="" id="preview-selected-image">
+                @endif
             </div>
-            @endif
 
-            <input name="{{ $name }}" type="file" id="{{ $name }}" {{ $attributes(['value'=>old($name)]) }} />
+            <input name="{{ $name }}" type="file" id="{{ $name }}" onchange="previewImage(event);" {{ $attributes(['value'=>old($name)]) }} />
 
 
             @error($name)
