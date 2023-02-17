@@ -24,13 +24,13 @@
                         @csrf
                         @method('PATCH')
 
-                        <x-form.input name="first" value="{{ old('first', $employee->first) }}" />
-                        <x-form.input name="last" value="{{ old('last', $employee->last) }}" />
+                        <x-form.input label="first name" name="first" value="{{ old('first', $employee->first) }}" />
+                        <x-form.input label="last name" name="last" value="{{ old('last', $employee->last) }}" />
 
-                        <x-form.dropdown name="company_id" :list="$companies" :old="old('company_id', $employee->company_id)" />
+                        <x-form.dropdown label="company name" name="company_id" :list="$companies" :old="old('company_id', $employee->company_id)" />
 
-                        <x-form.input name="email" type="email" value="{{ old('email', $employee->email) }}" />
-                        <x-form.input name="phone" value="{{ old('phone', $employee->phone) }}" />
+                        <x-form.input label="email address" name="email" type="email" value="{{ old('email', $employee->email) }}" />
+                        <x-form.input label="phone number" name="phone" value="{{ old('phone', $employee->phone) }}" />
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

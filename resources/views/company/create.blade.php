@@ -18,7 +18,7 @@
                         @csrf
 
                         <x-form.input name="name" />
-                        <x-form.input name="email" type="email" />
+                        <x-form.input label="email address" name="email" type="email" />
 
                         <x-form.file name="logo" :value=null />
 

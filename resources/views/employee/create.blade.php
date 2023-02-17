@@ -17,13 +17,13 @@
                     <form method="POST" action="{{ route('employee.store') }}" enctype="multipart/form-data">
                         @csrf
 
-                        <x-form.input name="first" />
-                        <x-form.input name="last" />
+                        <x-form.input label="first name" name="first" />
+                        <x-form.input label="last name" name="last" />
 
-                        <x-form.dropdown name="company_id" :list="$companies" :old="old('company_id')" />
+                        <x-form.dropdown label="company name" name="company_id" :list="$companies" :old="old('company_id')" />
 
-                        <x-form.input name="email" type="email" />
-                        <x-form.input name="phone" />
+                        <x-form.input label="email address" name="email" type="email" />
+                        <x-form.input label="phone number" name="phone" />
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

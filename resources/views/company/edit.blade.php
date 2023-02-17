@@ -25,7 +25,7 @@
                         @method('PATCH')
 
                         <x-form.input name="name" :value="old('name', $company->name)" />
-                        <x-form.input name="email" type="email" :value="old('email', $company->email)" />
+                        <x-form.input label="email address" name="email" type="email" :value="old('email', $company->email)" />
 
                         <x-form.file name="logo" :value="old('logo', $company->logo)" />
 
