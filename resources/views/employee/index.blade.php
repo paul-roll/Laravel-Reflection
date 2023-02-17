@@ -55,7 +55,7 @@
                     </div>
 
                     {{ $employees->links() }}
-                    
+
                 </div>
             </div>
         </div>

@@ -65,8 +65,7 @@ class CompanyController extends Controller
         }
 
         $company = Company::create($attributes);
-        // return redirect('company/' . $company["id"]);
-        return redirect('company/' . $company->id);
+        return redirect('company/' . $company->id)->with('success', 'Company \'' . $company->name . '\' created.');
     }
 
     public function edit(Company $company)
@@ -83,7 +82,7 @@ class CompanyController extends Controller
                 unlink(storage_path('app/public/company/logos/' . $company->logo));
             }
             $company->update(['logo' => null]);
-            return back()->withInput();
+            return back()->withInput()->with('success', 'Logo removed from company \'' . $company->name . '\'.');
         }
 
         // Persist the edited company
@@ -99,7 +98,7 @@ class CompanyController extends Controller
 
         $company->update($attributes);
 
-        return redirect('company/' . $company->id);
+        return redirect('company/' . $company->id)->with('success', 'Company \'' . $company->name . '\' updated.');
     }
 
     public function destroy(Company $company)
@@ -111,6 +110,6 @@ class CompanyController extends Controller
         }
 
         $company->delete();
-        return redirect('company')->with('success', 'Deleted!');
+        return redirect('company')->with('success', 'Company \'' . $company->name . '\' deleted.');
     }
 }

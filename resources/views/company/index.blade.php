@@ -55,7 +55,7 @@
                     </div>
 
                     {{ $companies->links() }}
-                    
+
                 </div>
             </div>
         </div>

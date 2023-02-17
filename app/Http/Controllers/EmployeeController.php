@@ -63,7 +63,7 @@ class EmployeeController extends Controller
         $attributes = $request->validated();
 
         $employee = Employee::create($attributes);
-        return redirect('employee/' . $employee->id);
+        return redirect('employee/' . $employee->id)->with('success', 'Employee \'' .  $employee->first . ' ' . $employee->last . '\' created.');
     }
 
     public function edit(Employee $employee)
@@ -79,7 +79,7 @@ class EmployeeController extends Controller
 
         $employee->update($attributes);
 
-        return redirect('employee/' . $employee->id);
+        return redirect('employee/' . $employee->id)->with('success', 'Employee \'' .  $employee->first . ' ' . $employee->last . '\' updated.');
     }
 
     public function destroy(Employee $employee)
@@ -87,6 +87,6 @@ class EmployeeController extends Controller
         // Delete the employee
 
         $employee->delete();
-        return redirect('employee')->with('success', 'Deleted!');
+        return redirect('employee')->with('success', 'Employee \'' . $employee->first . ' ' . $employee->last . '\' deleted.');
     }
 }
