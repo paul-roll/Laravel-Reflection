@@ -26,33 +26,36 @@ use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
 
-    // setup code
+    // init setup code
+    // delete users table or admin user to force a reset
     if (!Schema::hasTable('users') || (!User::where('name', '=', 'Admin')->exists())) {
-        // Code to create table
+        //log out the current user
         Session::flush();
         Auth::logout();
 
         // create symlink
         Artisan::call('storage:link');
 
-        // Delete old company images
+        // Delete any old company images
         array_map('unlink', glob(storage_path('app/public/company/logos/*')));
 
+        // migrate the tables and seed from fresh, forced in production
         Artisan::call('migrate:fresh --seed --force');
     }
 
     return view('home', ['companyCount' => Company::count(), 'employeeCount' => Employee::count()]);
-});
+})->name('home');
 
-
-
+// automatically use https
 Route::group(['scheme' => 'https'], function () {
+    // login and logout routes
     Route::get('login',  [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login',  [LoginController::class, 'login']);
     Route::get('logout',  [LoginController::class, 'logout']);
     Route::post('logout',  [LoginController::class, 'logout'])->name('logout');
 });
 
+// require authentication
 Route::group(['middleware' => 'auth'], function () {
     Route::get('company/search', [CompanyController::class, 'search']);
     Route::resource('company', CompanyController::class);
