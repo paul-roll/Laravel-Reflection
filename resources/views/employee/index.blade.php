@@ -8,8 +8,8 @@
                 <div class="card-header">
                     <div class="mt-1">
                         <h3 class="d-inline">
-                            @if (isset($message))
-                            {{ $message }}
+                            @if (isset($search))
+                            {{ 'Search Employees: \'' . $search . '\'' }}
                             @else
                             Index Employees
                             @endif
@@ -19,11 +19,14 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="col-md-6">
-                        <form class="input-group mb-3" action="{{ asset('employee/search') }}" method="GET" role="search">
+                    <div class="col-md-6 mb-3">
+                        <form class="input-group mb-2" action="{{ asset('employee/search') }}" method="GET" role="search">
                             <input class="btn btn-outline-secondary" type="submit" value="Search" id="button-addon1" />
                             <input id="q" name="q" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
                         </form>
+                        @if (isset($search))
+                        <a href="{{ asset('employee') }}"><input class="btn btn-outline-secondary" type="submit" value="Back to full employee index" /></a>
+                        @endif
                     </div>
 
                     {{ $employees->links() }}

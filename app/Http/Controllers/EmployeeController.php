@@ -37,8 +37,9 @@ class EmployeeController extends Controller
         ));
 
         return view('employee.index', [
-            'employees' => $results
-        ])->withMessage('Search Employees: \'' . $search . '\'');
+            'employees' => $results,
+            'search' => $search
+        ]);
     }
 
     public function show($id)

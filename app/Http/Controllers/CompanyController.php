@@ -35,8 +35,9 @@ class CompanyController extends Controller
           ) );
 
         return view('company.index', [
-            'companies' => $results
-        ])->withMessage('Search Compaines: \'' . $search . '\'');
+            'companies' => $results,
+            'search' => $search
+        ]);
     }
 
     public function show($id)
