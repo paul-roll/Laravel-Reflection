@@ -33,7 +33,7 @@
 
                     <div class="row">
                         @if (count($employees) == 0)
-                        <h3 class="text-center">No employees found!</h3>
+                        <h3 class="text-center">No employees found</h3>
                         @endif
                         @foreach ($employees as $employee)
                         <a href="{{ asset('employee/' . $employee->id) }}" class="col-lg-6 d-flex mb-2 text-reset text-decoration-none link-primary">

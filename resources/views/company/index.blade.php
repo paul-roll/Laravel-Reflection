@@ -9,7 +9,7 @@
                     <div class="mt-1">
                         <h3 class="d-inline">
                             @if (isset($search))
-                            {{ 'Search Compaines: \'' . $search . '\'' }}
+                            {{ 'Search Companies: \'' . $search . '\'' }}
                             @else
                             Index Companies
                             @endif
@@ -33,7 +33,7 @@
 
                     <div class="row">
                         @if (count($companies) == 0)
-                        <h3 class="text-center">No companies found!</h3>
+                        <h3 class="text-center">No companies found</h3>
                         @endif
                         @foreach ($companies as $company)
                         <a href="{{ asset('company/' . $company->id) }}" class="col-lg-6 d-flex mb-2 text-reset text-decoration-none link-primary">
