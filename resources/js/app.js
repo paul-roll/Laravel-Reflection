@@ -10,3 +10,7 @@ window.previewImage = function (event) {
         imagePreviewElement.src = imageSrc;
     }
 };
+
+dselect(document.querySelector('select'), {
+    search: true
+});
