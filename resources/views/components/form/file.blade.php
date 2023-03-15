@@ -14,9 +14,9 @@
             
             <div class="my-2">
                 @if ($value)
-                <img src="{{ asset('storage/company/logos/' . $value) }}" width="100" height="100" alt="" id="preview-selected-image">
+                <div id="preview-selected-image" class=""><x-logo>{{ $value }}</x-logo></div>
                 @else
-                <img src="{{ asset('img/nologo.jpg') }}" width="100" height="100" alt="" id="preview-selected-image">
+                <div id="preview-selected-image"><img src="{{ asset('img/nologo.jpg') }}" width="100" height="100" alt="" style="object-fit:contain"></div>
                 @endif
             </div>
 
