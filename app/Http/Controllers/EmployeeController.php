@@ -56,7 +56,7 @@ class EmployeeController extends Controller
     public function create()
     {
         // Shows a view to create a new employee
-        return view('employee.create', ['companies' => Company::all()]);
+        return view('employee.create', ['companies' => Company::all()->sortBy('name')]);
     }
 
     public function store(ValidateEmployee $request)
@@ -70,7 +70,7 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         // Show a view to edit an existing employee
-        return view('employee.edit', ['employee' => $employee, 'companies' => Company::all()]);
+        return view('employee.edit', ['employee' => $employee, 'companies' => Company::all()->sortBy('name')]);
     }
 
     public function update(Employee $employee, ValidateEmployee $request)
