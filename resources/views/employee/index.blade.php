@@ -22,7 +22,7 @@
                     <div class="col-md-6 mb-3">
                         <form class="input-group mb-2" action="{{ asset('employee/search') }}" method="GET" role="search">
                             <input class="btn btn-outline-secondary" type="submit" value="Search" id="button-addon1" />
-                            <input id="q" name="q" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                            <input id="q" name="q" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" @if (isset($search)) value="{{ $search }}" @endif>
                         </form>
                         @if (isset($search))
                         <a href="{{ asset('employee') }}"><input class="btn btn-outline-secondary" type="submit" value="Back to full employee index" /></a>
