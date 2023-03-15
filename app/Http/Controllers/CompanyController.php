@@ -12,7 +12,7 @@ class CompanyController extends Controller
     {
         // Index all
         return view('company.index', [
-            'companies' => Company::latest('updated_at')->paginate(10)
+            'companies' => Company::orderBy('name', 'asc')->paginate(10)
         ]);
     }
 
@@ -28,7 +28,7 @@ class CompanyController extends Controller
             foreach ($searchValues as $value) {
                 $q->orWhere('name', 'like', '%' . $value . '%');
             }
-        })->latest('updated_at')->paginate(10)->setPath('');
+        })->orderBy('name', 'asc')->paginate(10)->setPath('');
 
         $results->appends ( array (
             'q' => Request::get ( 'q' ) 

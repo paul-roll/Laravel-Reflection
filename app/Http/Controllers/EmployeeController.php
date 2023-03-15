@@ -14,7 +14,7 @@ class EmployeeController extends Controller
     {
         // Index all employees
         return view('employee.index', [
-            'employees' => Employee::latest('updated_at')->paginate(10)
+            'employees' => Employee::orderBy('last', 'asc')->orderBy('first', 'asc')->paginate(10)
         ]);
     }
 
@@ -30,7 +30,7 @@ class EmployeeController extends Controller
             foreach ($searchValues as $value) {
                 $q->orWhere('first', 'like', '%' . $value . '%')->orWhere('last', 'like', '%' . $value . '%');
             }
-        })->latest('updated_at')->paginate(10)->setPath('');
+        })->orderBy('last', 'asc')->orderBy('first', 'asc')->paginate(10)->setPath('');
 
         $results->appends(array(
             'q' => Request::get('q')
