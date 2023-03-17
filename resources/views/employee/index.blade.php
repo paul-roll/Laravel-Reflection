@@ -8,8 +8,8 @@
                 <div class="card-header">
                     <div class="mt-1">
                         <h3 class="d-inline">
-                            @if (isset($message))
-                            {{ $message }}
+                            @if (isset($search))
+                            {{ 'Search Employees: \'' . $search . '\'' }}
                             @else
                             Index Employees
                             @endif
@@ -19,18 +19,21 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="col-md-6">
-                        <form class="input-group mb-3" action="{{ asset('employee/search') }}" method="GET" role="search">
+                    <div class="col-md-6 mb-3">
+                        <form class="input-group mb-2" action="{{ asset('employee/search') }}" method="GET" role="search">
                             <input class="btn btn-outline-secondary" type="submit" value="Search" id="button-addon1" />
-                            <input id="q" name="q" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                            <input id="q" name="q" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" @if (isset($search)) value="{{ $search }}" @endif>
                         </form>
+                        @if (isset($search))
+                        <a href="{{ asset('employee') }}"><input class="btn btn-outline-secondary" type="submit" value="Back to full employee index" /></a>
+                        @endif
                     </div>
 
                     {{ $employees->links() }}
 
                     <div class="row">
                         @if (count($employees) == 0)
-                        <h3 class="text-center">No employees found!</h3>
+                        <h3 class="text-center">No employees found</h3>
                         @endif
                         @foreach ($employees as $employee)
                         <a href="{{ asset('employee/' . $employee->id) }}" class="col-lg-6 d-flex mb-2 text-reset text-decoration-none link-primary">
